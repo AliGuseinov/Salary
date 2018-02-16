@@ -1,0 +1,82 @@
+﻿using System;
+
+namespace зарплата
+{
+    class Program
+    {
+        // TODO вывод НДФЛ
+        // TODO вывод суммы отчислений
+        // TODO вывод остатка бюджета после учета всех затрат
+        // TODO выложить на github
+        static void Main(string[] args)
+        {
+            int workingTime;
+            int experience;
+            int ourBudget;
+            int tax;
+            int salary;
+            int deductions;
+            int expenses;
+            int n;
+            int salaryNDFL;
+            int salaryDeductions;
+            int finalBudget;
+            n = 100;
+            int maxSalary;
+            int minSalary;
+            Console.WriteLine("Программа вычисления зарплаты работника");
+            Console.WriteLine("Введите часы работ (0 до 60)");
+            workingTime = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите опыт работы (число от 0 до 10)");
+            experience = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите уровень максимальной зарплаты");
+            maxSalary = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите уровень минимальной зарплаты");
+            minSalary = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите бюджет компании (от 1000 0000");
+            ourBudget = int.Parse(Console.ReadLine());
+            if (ourBudget < 10000000) ;
+            {
+                Console.WriteLine("Неверно");
+            }
+            Console.WriteLine("Try again");
+            ourBudget = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Введите проценты налога (от 0 до 100)");
+            tax = int.Parse(Console.ReadLine());
+            if (tax < 0) ;
+            {
+                Console.WriteLine("Число не соответствует условию");
+            }
+            Console.WriteLine("Попробуйте снова");
+            tax = int.Parse(Console.ReadLine());
+
+
+            Console.WriteLine("Введите процент отчислений (от 0 до 100)");
+            deductions = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Введите сумму прочих затрат");
+            expenses = int.Parse(Console.ReadLine());
+
+
+            salary = (minSalary + (maxSalary - minSalary) * experience) *
+                workingTime / 60;
+            
+            Console.Write("Зарплата игрока: ");
+            Console.WriteLine(salary); 
+
+            salaryNDFL = salary - (salary * tax / 100);
+            Console.Write("Зарплата с учетом налога: ");
+            Console.WriteLine(salaryNDFL);
+
+            salaryDeductions = salaryNDFL + (salaryNDFL * deductions / 100);
+            Console.Write("Зарплата с учетом отчислений: ");
+            Console.WriteLine(salaryDeductions);
+
+            finalBudget = ourBudget - (salaryDeductions + expenses);
+            Console.Write("Остаток бюджета: ");
+            Console.WriteLine(finalBudget);
+
+        }
+    }
+}
